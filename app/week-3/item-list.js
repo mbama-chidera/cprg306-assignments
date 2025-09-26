@@ -1,4 +1,3 @@
-
 import Item from "./item";
 
 const item1 = {
@@ -74,16 +73,20 @@ const item12 = {
 };
 
 export default function ItemList() {
-  const items = [
-    item1, item2, item3, item4, item5, item6,
-    item7, item8, item9, item10, item11, item12,
-  ];
-
   return (
     <ul role="list" className="space-y-4">
-      {items.map((item, idx) => (
-        <Item key={`${item.name}-${idx}`} {...item} />
-      ))}
+      <Item {...item1} />
+      <Item {...item2} />
+      <Item {...item3} />
+      <Item {...item4} />
+      <Item {...item5} />
+      <Item {...item6} />
+      <Item {...item7} />
+      <Item {...item8} />
+      <Item {...item9} />
+      <Item {...item10} />
+      <Item {...item11} />
+      <Item {...item12} />
     </ul>
   );
 }
