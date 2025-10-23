@@ -34,7 +34,7 @@ export default function NewItem() {
   return (
     <form
       onSubmit={handleSubmit}
-      className=" bg-white border border-gray-600 p-4 rounded-sm shadow-sm justify-content h-50 w-100 max-w-md"
+      className="bg-white border border-gray-600 p-4 rounded-sm shadow-sm justify-content h-50 w-100 max-w-md"
     >
       {/* Item Name */}
       <div>
