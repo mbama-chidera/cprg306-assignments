@@ -3,13 +3,12 @@
 import Link from "next/link";
 import { useUserAuth } from "./_utils/auth-context";
 
-// Add this line to prevent static generation during build
+// CRITICAL: This prevents build errors on Vercel
 export const dynamic = 'force-dynamic';
 
 export default function Page() {
   const { user, gitHubSignIn, logOut, loading } = useUserAuth();
 
-  // Add loading state
   if (loading) {
     return (
       <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-6">
