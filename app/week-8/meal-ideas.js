@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 export default function MealIdeas({ ingredient }) {
   const [meals, setMeals] = useState([]);
@@ -20,16 +20,16 @@ export default function MealIdeas({ ingredient }) {
   }
 
   // Load meals whenever ingredient changes
-  async function loadMealIdeas() {
+  const loadMealIdeas = useCallback(async () => {
     if (ingredient) {
       const fetchedMeals = await fetchMealIdeas(ingredient);
       setMeals(fetchedMeals);
     }
-  }
+  }, [ingredient]); 
 
   useEffect(() => {
     loadMealIdeas();
-  }, [ingredient]);
+  }, [loadMealIdeas]);   
 
   return (
     <div className="p-4 bg-black border border-white rounded-lg shadow-md">
@@ -53,9 +53,7 @@ export default function MealIdeas({ ingredient }) {
           ))}
         </ul>
       ) : (
-        ingredient && (
-          <p className="text-white mt-2">No meal found.</p>
-        )
+        ingredient && <p className="text-white mt-2">No meal found.</p>
       )}
     </div>
   );
