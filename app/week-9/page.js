@@ -3,8 +3,20 @@
 import Link from "next/link";
 import { useUserAuth } from "./_utils/auth-context";
 
+// Add this line to prevent static generation during build
+export const dynamic = 'force-dynamic';
+
 export default function Page() {
-  const { user, gitHubSignIn, logOut } = useUserAuth();
+  const { user, gitHubSignIn, logOut, loading } = useUserAuth();
+
+  // Add loading state
+  if (loading) {
+    return (
+      <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-6">
+        <div className="text-white">Loading...</div>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-6">
@@ -15,7 +27,7 @@ export default function Page() {
           <p className="mb-4">Sign in with GitHub to continue.</p>
           <button
             onClick={gitHubSignIn}
-            className="px-4 py-2 bg-white text-black rounded"
+            className="px-4 py-2 bg-white text-black rounded hover:bg-gray-200 transition"
           >
             Sign in with GitHub
           </button>
@@ -26,13 +38,13 @@ export default function Page() {
           <div className="flex gap-4">
             <Link
               href="/week-9/shopping-list"
-              className="px-4 py-2 border border-white rounded"
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
             >
               Go to Shopping List
             </Link>
             <button
               onClick={logOut}
-              className="px-4 py-2 border border-white rounded"
+              className="px-4 py-2 border border-white rounded hover:bg-gray-800 transition"
             >
               Log Out
             </button>
