@@ -3,16 +3,15 @@
 import Link from "next/link";
 import { useUserAuth } from "./_utils/auth-context";
 
-// CRITICAL: This prevents build errors on Vercel
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export default function Page() {
   const { user, gitHubSignIn, logOut, loading } = useUserAuth();
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-6">
-        <div className="text-white">Loading...</div>
+      <main className="min-h-screen bg-black text-white flex items-center justify-center">
+        <p>Loading...</p>
       </main>
     );
   }
@@ -25,7 +24,7 @@ export default function Page() {
         <>
           <p className="mb-4">Sign in with GitHub to continue.</p>
           <button
-            onClick={gitHubSignIn}
+            onClick={() => gitHubSignIn()}
             className="px-4 py-2 bg-white text-black rounded hover:bg-gray-200 transition"
           >
             Sign in with GitHub
@@ -42,7 +41,7 @@ export default function Page() {
               Go to Shopping List
             </Link>
             <button
-              onClick={logOut}
+              onClick={() => logOut()}
               className="px-4 py-2 border border-white rounded hover:bg-gray-800 transition"
             >
               Log Out
